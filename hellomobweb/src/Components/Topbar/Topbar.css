@@ -1,0 +1,64 @@
+.topbar {
+  height: 70px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  left: 260px; /* same as sidebar width */
+  right: 0;
+  top: 0;
+  z-index: 999;
+}
+
+.topbar-left h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3c72;
+  margin-left: 20px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+/* Tablets / Small Laptops */
+@media (max-width: 1024px) {
+  .topbar {
+    left: 220px;   /* match sidebar width at 1024px */
+  }
+
+  .topbar-left h2 {
+    font-size: 18px;   /* slightly smaller title */
+  }
+
+  .profile-pic {
+    width: 36px;
+    height: 36px;
+  }
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .topbar {
+    left: 0;
+  }
+  .topbar-left h2{
+    display: none;
+  }
+}
