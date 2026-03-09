@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from "react"; 
-import { useNavigate } from "react-router-dom"; 
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
-    FaCalendarAlt,
-    FaImage,
-    FaPen,
-    FaPlus,
-    FaSave,
-    FaSyncAlt,
-    FaTimes,
+  FaCalendarAlt,
+  FaImage,
+  FaPen,
+  FaPlus,
+  FaSave,
+  FaSyncAlt,
+  FaTimes,
 } from "react-icons/fa"; // icons
 
 import "./AddProduct.css"; // CSS file
@@ -72,6 +72,7 @@ function AddProduct() {
   // object to store all product details
   const [product, setProduct] = useState({
     name: "",
+    productId: "",
     description: "",
     price: "",
     discountPrice: "",
@@ -160,16 +161,32 @@ function AddProduct() {
             {/* BASIC DETAILS */}
             <h4 className="section-title">Basic Details</h4>
 
-            <div className="mb-3">
-              <label className="form-label">Product Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="name"
-                value={product.name}
-                onChange={handleChange}
-                placeholder="Enter product name"
-              />{" "}
+            <div className="row">
+              {/* Product Name */}
+              <div className="col-md-6 mb-3">
+                <label className="form-label">Product Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  value={product.name}
+                  onChange={handleChange}
+                  placeholder="Enter product name"
+                />
+              </div>
+
+              {/* Product ID */}
+              <div className="col-md-6 mb-3">
+                <label className="form-label">Product ID</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="productId"
+                  value={product.productId}
+                  onChange={handleChange}
+                  placeholder="Enter product ID"
+                />
+              </div>
             </div>
 
             <div className="mb-4">
@@ -203,18 +220,14 @@ function AddProduct() {
                 name="price"
                 value={product.price}
                 onChange={handleChange}
-                placeholder="₹ 55999"
+                placeholder="₹"
               />{" "}
             </div>
 
             <div className="row mb-3">
               <div className="col-md-6 mb-3">
                 <label className="form-label">Discounted Price</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  placeholder="₹ 999"
-                />
+                <input type="number" className="form-control" placeholder="₹" />
               </div>
 
               <div className="col-md-6">

@@ -4,7 +4,8 @@ import Topbar from "./Components/Topbar/Topbar";
 import "./App.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Products from "./Pages/Products/Products";
-import AddProduct from "./Pages/AddProduct/AddProduct";
+import AddProduct from "./Components/Productmanagement/AddProduct/AddProduct";
+import Orders from "./Pages/Orders/Orders";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/addproduct" element={<AddProduct/>} />
+              <Route path="/addproduct" element={<AddProduct/>}/>
+              <Route path="/orders" element={<Orders />} />
+              
             </Routes>
           </div>
         </div>

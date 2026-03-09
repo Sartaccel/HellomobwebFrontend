@@ -1,0 +1,75 @@
+.add-card{
+background:#fff;
+border-radius:14px;
+padding:20px;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+
+.add-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.add-header h4{
+font-size:clamp(16px,1.2vw,20px);
+}
+
+.add-link{
+color:#4a6cf7;
+font-size:clamp(12px,0.9vw,14px);
+cursor:pointer;
+}
+
+.section-title{
+margin-top:15px;
+font-size:clamp(13px,1vw,15px);
+color:#777;
+}
+
+.cat-row{
+display:flex;
+align-items:center;
+gap:10px;
+padding:12px;
+border:1px solid #eee;
+border-radius:8px;
+margin-top:8px;
+}
+
+.cat-row img{
+width:36px;
+height:36px;
+}
+
+.arrow{
+margin-left:auto;
+}
+
+.prod-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+border-bottom:1px solid #eee;
+}
+
+.prod-row p{
+color:#4caf70;
+font-size:clamp(12px,0.9vw,14px);
+}
+
+.add-btn{
+background:#4caf70;
+border:none;
+color:#fff;
+padding:6px 14px;
+border-radius:20px;
+cursor:pointer;
+}
+
+.see-more{
+text-align:center;
+color:#4a6cf7;
+margin-top:8px;
+cursor:pointer;
+}
