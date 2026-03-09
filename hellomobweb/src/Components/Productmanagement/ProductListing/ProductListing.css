@@ -1,0 +1,212 @@
+/* page */
+
+.product-page{
+padding:20px;
+}
+
+
+/* HEADER */
+
+.table-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:14px;
+}
+
+.table-header h4{
+font-size: clamp(16px, 1.2vw, 18px);
+font-weight:600;
+color:#2c3e50;
+}
+
+
+/* ADD BUTTON */
+
+.add-btn{
+background:#4caf70;
+border:none;
+color:white;
+padding: clamp(6px, 0.6vw, 7px) clamp(10px, 1vw, 14px);
+border-radius:6px;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap: clamp(4px, 0.6vw, 6px);
+font-size: clamp(10px, 0.9vw, 13px);
+transition:0.2s;
+}
+
+.add-btn:hover{
+background:#409c61;
+}
+
+
+/* SEARCH BAR */
+
+.search-bar{
+display:flex;
+align-items:center;
+gap:8px;
+background:#f6f7f8;
+padding:8px 12px;
+border-radius:6px;
+border:1px solid #e6e6e6;
+margin-bottom:15px;
+width: clamp(220px, 40vw, 400px);
+}
+
+.search-bar input{
+border:none;
+background:transparent;
+outline:none;
+font-size:13px;
+width:100%;
+}
+
+.search-icon{
+color:#a0a4a8;
+}
+
+
+/* TABLE CARD */
+
+.table-card{
+background:white;
+border-radius:8px;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+overflow:hidden;
+}
+
+
+/* TABLE */
+.table-scroll{
+width:100%;
+overflow-x:auto;
+}
+
+.product-table{
+width:100%;
+min-width:750px;
+border-collapse:collapse;
+}
+
+
+/* TABLE HEADER */
+
+.product-table th{
+background:#eaeaeb;
+padding:13px 12px;
+font-size:12px;
+color:#6c757d;
+text-align:left;
+border-bottom:1px solid #e9ecef;
+}
+
+
+/* TABLE ROW */
+
+.product-table td{
+padding:14px 12px;
+font-size:13px;
+color:#2f3e46;
+border-bottom:1px solid #f1f3f5;
+}
+
+.product-table tbody tr:hover{
+background:#fafafa;
+}
+
+
+/* IMAGE */
+
+.product-img{
+width:34px;
+height:34px;
+border-radius:6px;
+object-fit:cover;
+}
+
+
+/* STOCK STATUS */
+
+.stock{
+font-weight:500;
+color:#2f3e46;
+}
+
+
+/* ACTION ICONS */
+
+.actions svg{
+cursor:pointer;
+margin-right:10px;
+font-size:14px;
+transition:0.2s;
+}
+
+/* mild icon colors */
+
+.edit{
+color:#7aa6a6;
+}
+
+.delete{
+color:#c97a7a;
+}
+
+.more{
+color:#9aa0a6;
+}
+
+.actions svg:hover{
+opacity:0.7;
+}
+.pagination{
+display:flex;
+justify-content:center;
+gap:6px;
+margin-top:18px;
+}
+
+.pagination button{
+border:1px solid #b8b8b8;
+background:white;
+padding:5px 10px;
+cursor:pointer;
+border-radius:4px;
+color: #2c3e50;
+font-size:14px;
+}
+
+.pagination button.active{
+background:#4CAF70;
+color:#ffffff;
+border-color:#4CAF70;
+}
+
+.pagination button:disabled{
+opacity:0.4;
+cursor:not-allowed;
+}
+
+
+
+
+.table-scroll::-webkit-scrollbar{
+height:6px;
+}
+
+.table-scroll::-webkit-scrollbar-track{
+background:#f1f1f1;
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+background:#bdbdbd;
+border-radius:10px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover{
+background:#8c8c8c;
+}
+

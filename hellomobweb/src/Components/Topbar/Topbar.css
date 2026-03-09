@@ -1,64 +1,159 @@
-.topbar {
-  height: 70px;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  position: fixed;
-  left: 260px; /* same as sidebar width */
-  right: 0;
-  top: 0;
-  z-index: 999;
+/* ===== TOPBAR CONTAINER ===== */
+
+.topbar{
+  height:70px;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 clamp(15px,3vw,30px);
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  position:fixed;
+  left: clamp(220px,18vw,260px); /* same as sidebar width */
+  right:0;
+  top:0;
+  z-index:999;
 }
 
-.topbar-left h2 {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1e3c72;
-  margin-left: 20px;
+
+/* ===== LEFT SECTION ===== */
+
+.topbar-left{
+  display:flex;
+  align-items:center;
 }
 
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.topbar-left h2{
+  font-size: clamp(18px,1.3vw,22px);
+  font-weight:600;
+  color:#1e3c72;
+  margin-left:30px;   /* remove the extra margin */
 }
 
-.admin-name {
-  font-weight: 500;
-  color: #333;
+
+/* ===== RIGHT SECTION ===== */
+
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:clamp(12px,1.5vw,20px);
 }
 
-.profile-pic {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
+
+/* ===== SEARCH BOX ===== */
+
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#f4f6fb;
+  border-radius:25px;
+  padding:8px 16px;
+  width:clamp(180px,25vw,320px);
+  transition:0.2s ease;
+  margin-top: 20px;
 }
-/* Tablets / Small Laptops */
-@media (max-width: 1024px) {
-  .topbar {
-    left: 220px;   /* match sidebar width at 1024px */
+
+.search-box:hover{
+  background:#eef1f7;
+}
+
+.search-icon{
+  color:#777;
+  font-size:clamp(14px,1vw,16px);
+}
+
+.search-box input{
+  border:none;
+  outline:none;
+  background:transparent;
+  width:100%;
+  font-size:clamp(12px,0.9vw,14px);
+  color:#333;
+}
+
+.search-box input::placeholder{
+  color:#999;
+}
+
+
+/* ===== NOTIFICATION ===== */
+
+.notification{
+  position:relative;
+  font-size:clamp(16px,1.2vw,20px);
+  color:#333;
+  cursor:pointer;
+}
+
+.notification-dot{
+  position:absolute;
+  top:2px;
+  right:-2px;
+  width:8px;
+  height:8px;
+  background:red;
+  border-radius:50%;
+}
+
+
+/* ===== PROFILE IMAGE ===== */
+
+.profile-pic{
+  width:clamp(34px,2vw,40px);
+  height:clamp(34px,2vw,40px);
+  border-radius:50%;
+  object-fit:cover;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.profile-pic:hover{
+  transform:scale(1.05);
+}
+
+
+/* ===== TABLET ===== */
+
+@media (max-width:1024px){
+
+  .topbar{
+    left:220px;   /* match sidebar width */
   }
 
-  .topbar-left h2 {
-    font-size: 18px;   /* slightly smaller title */
+  .search-box{
+    width:220px;
   }
 
-  .profile-pic {
-    width: 36px;
-    height: 36px;
-  }
 }
-/* Responsive */
-@media (max-width: 768px) {
-  .topbar {
-    left: 0;
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width:768px){
+
+  .topbar{
+    left:0;
   }
+
   .topbar-left h2{
-    display: none;
+    display:none;
   }
+
+  .search-box{
+    width:160px;
+    padding:6px 12px;
+  }
+
+}
+
+
+/* ===== SMALL MOBILE ===== */
+
+@media (max-width:480px){
+
+  .search-box{
+    width:130px;
+  }
+
 }
