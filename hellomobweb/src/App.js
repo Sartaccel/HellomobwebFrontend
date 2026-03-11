@@ -6,6 +6,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import Products from "./Pages/Products/Products";
 import AddProduct from "./Components/Productmanagement/AddProduct/AddProduct";
 import Orders from "./Pages/Orders/Orders";
+import Category from "./Pages/Category/Category";
+import Admin from "./Pages/Admin/Admin";
 
 function App() {
   return (
@@ -22,7 +24,8 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/addproduct" element={<AddProduct/>}/>
               <Route path="/orders" element={<Orders />} />
-              
+              <Route path="/category" element={<Category />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </div>
         </div>
