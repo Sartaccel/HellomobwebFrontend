@@ -1,5 +1,7 @@
-import React from "react";
-import { FaPen, FaTrash, FaEllipsisH } from "react-icons/fa";
+import { useState } from "react";
+import { FaEllipsisH, FaPen, FaTrash } from "react-icons/fa";
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
+
 import "./Ordermanagement.css";
 
 const orderData = [
@@ -15,7 +17,23 @@ const orderData = [
   { id:"#5302012", product:"Basket with handles", category:"Grocery", qty:2, date:"Jun 28, 2020", revenue:"₹7378.34", profit:"₹249.08", status:"Completed"}
 ];
 
+ 
+
 function Ordermanagement() {
+// Pagination
+const [currentPage, setCurrentPage] = useState(1);
+const rowsPerPage = 10;
+
+const indexOfLastRow = currentPage * rowsPerPage;
+const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+
+const currentRows = orderData.slice(
+  indexOfFirstRow,
+  indexOfLastRow
+);
+
+const totalPages = Math.ceil(orderData.length / rowsPerPage);
+
   return (
     <div className="orders-card">
 
@@ -69,6 +87,37 @@ function Ordermanagement() {
 
         </div>
 
+      </div>
+        {/* Pagination */}
+       <div className="pagination">
+      
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          <MdKeyboardDoubleArrowLeft />
+      
+        </button>
+      
+        {[...Array(totalPages)].map((_, i) => (
+      
+          <button
+            key={i}
+            className={currentPage === i + 1 ? "active" : ""}
+            onClick={() => setCurrentPage(i + 1)}
+          >
+            {i + 1}
+          </button>
+      
+        ))}
+      
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          <MdKeyboardDoubleArrowRight />
+        </button>
+      
       </div>
 
     </div>
