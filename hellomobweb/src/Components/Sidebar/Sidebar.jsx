@@ -9,6 +9,7 @@ import {
   FaUsers,
   FaExternalLinkAlt,
   FaStore,
+  FaUserFriends
 } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -23,16 +24,17 @@ const Sidebar = () => {
   const userData = {
     name: "Dealport",
     email: "mark@thedesigner.com",
-    avatar: "https://i.pravatar.cc/40",
     shopName: "Your Shop",
   };
 
   const menuItems = [
     { name: "Dashboard", icon: <FaHome />, path: "/" },
     { name: "Product Management", icon: <FaBoxOpen />, path: "/products" },
-    { name: "Categories", icon: <FaTags />, path: "/categories" },
+    { name: "Categories", icon: <FaTags />, path: "/category" },
     { name: "Order Management", icon: <FaShoppingCart />, path: "/orders" },
     { name: "User Management", icon: <FaUsers />, path: "/users" },
+    { name: "Admin Management", icon: <FaUserFriends />, path: "/admin" },
+
   ];
 
   return (
@@ -79,7 +81,7 @@ const Sidebar = () => {
             {/* Profile Card */}
             <div className="profile-card">
               <div className="profile-left">
-                <img src={userData.avatar} alt="user" />
+                
                 <div className="profile-text">
                   <p className="profile-name">{userData.name}</p>
                   <span className="profile-email">{userData.email}</span>

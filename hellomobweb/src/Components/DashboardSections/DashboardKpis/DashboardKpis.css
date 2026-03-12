@@ -14,8 +14,8 @@ background:#fff;
 border-radius:12px;
 padding:20px;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
- display:flex;
-  flex-direction:column;}
+display:flex;
+flex-direction:column;}
 
 
 /* HEADER */

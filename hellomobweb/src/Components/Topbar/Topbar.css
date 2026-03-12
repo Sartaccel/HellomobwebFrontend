@@ -96,23 +96,6 @@
   border-radius:50%;
 }
 
-
-/* ===== PROFILE IMAGE ===== */
-
-.profile-pic{
-  width:clamp(34px,2vw,40px);
-  height:clamp(34px,2vw,40px);
-  border-radius:50%;
-  object-fit:cover;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.profile-pic:hover{
-  transform:scale(1.05);
-}
-
-
 /* ===== TABLET ===== */
 
 @media (max-width:1024px){

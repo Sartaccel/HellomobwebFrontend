@@ -8,6 +8,8 @@ import Products from "./Pages/Products/Products";
 import AddProduct from "./Components/Productmanagement/AddProduct/AddProduct";
 import Orders from "./Pages/Orders/Orders";
 import SuperAdmin from "./Pages/SuperAdmin/superadminlogin";
+import Category from "./Pages/Category/Category";
+import Admin from "./Pages/Admin/Admin";
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
         {/* Login Page */}
         <Route path="/" element={<SuperAdmin />} />
 
-        {/* Dashboard Pages */}
+        {/* Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -31,6 +33,7 @@ function App() {
           }
         />
 
+        {/* Products */}
         <Route
           path="/products"
           element={
@@ -44,6 +47,7 @@ function App() {
           }
         />
 
+        {/* Add Product */}
         <Route
           path="/addproduct"
           element={
@@ -57,6 +61,7 @@ function App() {
           }
         />
 
+        {/* Orders */}
         <Route
           path="/orders"
           element={
@@ -65,6 +70,34 @@ function App() {
               <div className="main-content">
                 <Topbar />
                 <Orders />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Category */}
+        <Route
+          path="/category"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Category />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Admin */}
+        <Route
+          path="/admin"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Admin />
               </div>
             </div>
           }
