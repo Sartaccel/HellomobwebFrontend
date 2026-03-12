@@ -1,263 +1,203 @@
-import { useState } from "react";
-import { MdKeyboardDoubleArrowLeft,MdKeyboardDoubleArrowRight } from "react-icons/md";
-
+import { useState, useEffect } from "react";
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { FaEdit, FaTrash, FaEllipsisV, FaPlus, FaSearch } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus, FaSearch } from "react-icons/fa";
 import "./ProductListing.css";
+import API from "../../../api";
 
 function ProductListing() {
+
   const navigate = useNavigate();
 
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(null);
+  const [confirmDelete, setConfirmDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      productId: "#8874",
-      name: "Apple iPhone 13",
-      price: 999,
-      stockStatus: "In Stock",
-      category: "Mobile",
-      image: "https://picsum.photos/40?random=1",
-    },
-    {
-      id: 2,
-      productId: "#8875",
-      name: "Nike Air Jordan",
-      price: 299,
-      stockStatus: "In Stock",
-      category: "Fashion",
-      image: "https://picsum.photos/40?random=2",
-    },
-    {
-      id: 3,
-      productId: "#8876",
-      name: "Smart Watch",
-      price: 199,
-      stockStatus: "Out of Stock",
-      category: "Electronics",
-      image: "https://picsum.photos/40?random=3",
-    },
-    {
-      id: 4,
-      productId: "#8877",
-      name: "Bluetooth Speaker",
-      price: 89,
-      stockStatus: "In Stock",
-      category: "Electronics",
-      image: "https://picsum.photos/40?random=4",
-    },
-    {
-      id: 5,
-      productId: "#8874",
-      name: "Gaming Mouse",
-      price: 49,
-      stockStatus: "In Stock",
-      category: "Accessories",
-      image: "https://picsum.photos/40?random=5",
-    },
-    {
-      id: 6,
-      productId: "#8874",
-      name: "Laptop Backpack",
-      price: 59,
-      stockStatus: "In Stock",
-      category: "Bags",
-      image: "https://picsum.photos/40?random=6",
-    },
-    {
-      id: 7,
-      productId: "#8874",
-      name: "Leather Wallet",
-      price: 39,
-      stockStatus: "In Stock",
-      category: "Fashion",
-      image: "https://picsum.photos/40?random=7",
-    },
-    {
-      id: 8,
-      productId: "#8874",
-      name: "Wireless Earbuds",
-      price: 129,
-      stockStatus: "Out of Stock",
-      category: "Electronics",
-      image: "https://picsum.photos/40?random=8",
-    },
-    {
-      id: 9,
-      productId: "#8874",
-      name: "Fitness Tracker",
-      price: 79,
-      stockStatus: "In Stock",
-      category: "Wearables",
-      image: "https://picsum.photos/40?random=9",
-    },
-    {
-      id: 10,
-      productId: "#8874",
-      name: "Portable Power Bank",
-      price: 45,
-      stockStatus: "In Stock",
-      category: "Accessories",
-      image: "https://picsum.photos/40?random=10",
-    },
-    {
-      id: 11,
-      productId: "#8874",
-      name: "Apple iPhone 13",
-      price: 999,
-      stockStatus: "In Stock",
-      category: "Mobile",
-      image: "https://picsum.photos/40?random=1",
-    },
-    {
-      id: 12,
-      productId: "#8875",
-      name: "Nike Air Jordan",
-      price: 299,
-      stockStatus: "In Stock",
-      category: "Fashion",
-      image: "https://picsum.photos/40?random=2",
-    },
-    {
-      id: 13,
-      productId: "#8876",
-      name: "Smart Watch",
-      price: 199,
-      stockStatus: "Out of Stock",
-      category: "Electronics",
-      image: "https://picsum.photos/40?random=3",
-    },
-    {
-      id: 14,
-      productId: "#8877",
-      name: "Bluetooth Speaker",
-      price: 89,
-      stockStatus: "In Stock",
-      category: "Electronics",
-      image: "https://picsum.photos/40?random=4",
-    },
-    {
-      id: 15,
-      productId: "#8874",
-      name: "Gaming Mouse",
-      price: 49,
-      stockStatus: "In Stock",
-      category: "Accessories",
-      image: "https://picsum.photos/40?random=5",
-    },
-    {
-      id: 16,
-      productId: "#8874",
-      name: "Laptop Backpack",
-      price: 59,
-      stockStatus: "In Stock",
-      category: "Bags",
-      image: "https://picsum.photos/40?random=6",
-    },
-    {
-      id: 17,
-      productId: "#8874",
-      name: "Leather Wallet",
-      price: 39,
-      stockStatus: "In Stock",
-      category: "Fashion",
-      image: "https://picsum.photos/40?random=7",
-    },
-    {
-      id: 18,
-      productId: "#8874",
-      name: "Wireless Earbuds",
-      price: 129,
-      stockStatus: "Out of Stock",
-      category: "Electronics",
-      image: "https://picsum.photos/40?random=8",
-    },
-    {
-      id: 19,
-      productId: "#8874",
-      name: "Fitness Tracker",
-      price: 79,
-      stockStatus: "In Stock",
-      category: "Wearables",
-      image: "https://picsum.photos/40?random=9",
-    },
-    {
-      id: 20,
-      productId: "#8874",
-      name: "Portable Power Bank",
-      price: 45,
-      stockStatus: "In Stock",
-      category: "Accessories",
-      image: "https://picsum.photos/40?random=10",
-    }
-  ]);
+  const rowsPerPage = 10;
 
-  // Delete product
-  const handleDelete = (index) => {
-    const updatedProducts = products.filter((_, i) => i !== index);
+  // Toast auto close
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 3000);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
-    setProducts(updatedProducts);
+  const showToast = (type, message) => {
+    setToast({ type, message });
   };
 
-  // Edit product
+  // Fetch products
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-    const handleEdit = (product) => {
-        localStorage.setItem("editProduct", JSON.stringify(product));
-        navigate("/addproduct");
-    };
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const res = await API.get("/products/all");
+      setProducts(res.data.data || []);
+    } catch (error) {
+      showToast("error", "Failed to load products");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Delete product
+  const handleDelete = async (id) => {
+    try {
+      await API.delete(`/products/delete/${id}`);
+
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+
+      showToast("success", "Product deleted successfully");
+    } catch (error) {
+      showToast("error", "Failed to delete product");
+    } finally {
+      setConfirmDelete(null);
+    }
+  };
+
+  // Edit product - fetch fresh data by ID using GET /products/{id}
+  const handleEdit = async (product) => {
+    try {
+      const res = await API.get(`/products/${product.id}`);
+      const freshProduct = res.data.data;
+      sessionStorage.setItem("editProduct", JSON.stringify(freshProduct));
+      navigate(`/addproduct?edit=${product.id}`);
+    } catch (error) {
+      showToast("error", "Failed to load product details");
+    }
+  };
+
+  // Publish product
+  const handlePublish = async (id) => {
+    try {
+      await API.put(`/products/publish/${id}`);
+
+      setProducts((prev) =>
+        prev.map((p) =>
+          p.id === id ? { ...p, status: "PUBLISHED" } : p
+        )
+      );
+
+      showToast("success", "Product published successfully");
+    } catch (error) {
+      showToast("error", "Failed to publish product");
+    }
+  };
+
   // Search filter
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(search.toLowerCase()) ||
-      product.productId.toLowerCase().includes(search.toLowerCase()) ||
-      product.category.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredProducts = products.filter((p) => {
+    const q = search.toLowerCase();
 
+    return (
+      (p.productName || "").toLowerCase().includes(q) ||
+      (p.productId || "").toLowerCase().includes(q) ||
+      (p.category || "").toLowerCase().includes(q)
+    );
+  });
 
   // Pagination
-const [currentPage, setCurrentPage] = useState(1);
-const rowsPerPage = 10;
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
 
-const indexOfLastRow = currentPage * rowsPerPage;
-const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = filteredProducts.slice(indexOfFirstRow, indexOfLastRow);
 
-const currentRows = filteredProducts.slice(
-  indexOfFirstRow,
-  indexOfLastRow
-);
+  const totalPages = Math.ceil(filteredProducts.length / rowsPerPage);
 
-const totalPages = Math.ceil(filteredProducts.length / rowsPerPage);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
 
   return (
     <section className="product-page">
+
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`toast ${toast.type}`}>
+          {toast.message}
+        </div>
+      )}
+
+      {/* Delete Confirmation */}
+      {confirmDelete && (
+        <div className="confirm-overlay">
+
+          <div className="confirm-box">
+
+            <h4>Delete Product</h4>
+
+            <p>
+              Are you sure you want to delete
+              <strong> {confirmDelete.productName} </strong>?
+            </p>
+
+            <div className="confirm-buttons">
+
+              <button
+                className="cancel-btn"
+                onClick={() => setConfirmDelete(null)}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(confirmDelete.id)}
+              >
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
       {/* HEADER */}
       <div className="table-header">
-        <h4>Product Details</h4>
 
-        <button className="add-btn" onClick={() => navigate("/addproduct")}>
+        <h3>Product Details</h3>
+
+        <button
+          className="add-btn"
+          onClick={() => navigate("/addproduct")}
+        >
           <FaPlus /> Add New Product
         </button>
+
       </div>
 
-      {/* SEARCH BAR */}
-
+      {/* SEARCH */}
       <div className="search-bar">
+
         <FaSearch className="search-icon" />
 
         <input
           type="text"
-          placeholder="Search by product name or ID"
+          placeholder="Search product..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)} 
         />
+
       </div>
 
       {/* TABLE */}
-
       <div className="table-card">
-        <div className="table-scroll">
+
+        {loading ? (
+          <div className="loading">Loading products...</div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="empty">No products found</div>
+        ) : (
+
           <table className="product-table">
+
             <thead>
               <tr>
                 <th>ID</th>
@@ -267,30 +207,66 @@ const totalPages = Math.ceil(filteredProducts.length / rowsPerPage);
                 <th>Price</th>
                 <th>Stock Status</th>
                 <th>Category</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
 
             <tbody>
+
               {currentRows.map((product, index) => (
-                <tr key={index}>
-                  <td>{ indexOfFirstRow+index + 1}</td>
+
+                <tr key={product.id}>
+
+                  <td>{indexOfFirstRow + index + 1}</td>
 
                   <td>
-                    <img src={product.image} alt="" className="product-img" />
+                    <img
+                      src={
+                        product.imageUrl ||
+                        `https://picsum.photos/40?random=${product.id}`
+                      }
+                      alt={product.productName}
+                      className="product-img"
+                    />
                   </td>
 
-                  <td className="product-id">{product.productId}</td>
+                  <td>{product.productId}</td>
 
-                  <td>{product.name}</td>
+                  <td>{product.productName}</td>
 
-                  <td>₹{product.price}</td>
+                  <td>₹{product.productPrice}</td>
 
-                  <td className="stock">{product.stockStatus}</td>
+                  <td>
+                    <span
+                      className={
+                        product.stockStatus === "INSTOCK"
+                          ? "stock instock"
+                          : "stock out"
+                      }
+                    >
+                      {product.stockStatus === "INSTOCK"
+                        ? "In Stock"
+                        : "Out of Stock"}
+                    </span>
+                  </td>
 
                   <td>{product.category}</td>
 
+                  <td>
+                    <span
+                      className={
+                        product.status === "PUBLISHED"
+                          ? "status published"
+                          : "status draft"
+                      }
+                    >
+                      {product.status}
+                    </span>
+                  </td>
+
                   <td className="actions">
+
                     <FaEdit
                       className="edit"
                       onClick={() => handleEdit(product)}
@@ -298,47 +274,68 @@ const totalPages = Math.ceil(filteredProducts.length / rowsPerPage);
 
                     <FaTrash
                       className="delete"
-                      onClick={() => handleDelete(indexOfFirstRow+index)}
+                      onClick={() => setConfirmDelete(product)}
                     />
 
-                    <FaEllipsisV className="more" />
+                    {product.status === "DRAFT" && (
+                      <button
+                        className="publish-btn"
+                        onClick={() => handlePublish(product.id)}
+                      >
+                        Publish
+                      </button>
+                    )}
+
                   </td>
+
                 </tr>
+
               ))}
+
             </tbody>
+
           </table>
-        </div>
+
+        )}
+
       </div>
-      <div className="pagination">
 
-  <button
-    disabled={currentPage === 1}
-    onClick={() => setCurrentPage(currentPage - 1)}
-  >
-    <MdKeyboardDoubleArrowLeft />
+      {/* PAGINATION */}
 
-  </button>
+      {totalPages > 1 && (
 
-  {[...Array(totalPages)].map((_, i) => (
+        <div className="pagination">
 
-    <button
-      key={i}
-      className={currentPage === i + 1 ? "active" : ""}
-      onClick={() => setCurrentPage(i + 1)}
-    >
-      {i + 1}
-    </button>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            <MdKeyboardDoubleArrowLeft />
+          </button>
 
-  ))}
+          {[...Array(totalPages)].map((_, i) => (
 
-  <button
-    disabled={currentPage === totalPages}
-    onClick={() => setCurrentPage(currentPage + 1)}
-  >
-    <MdKeyboardDoubleArrowRight />
-  </button>
+            <button
+              key={i}
+              className={currentPage === i + 1 ? "active" : ""}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
 
-</div>
+          ))}
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            <MdKeyboardDoubleArrowRight />
+          </button>
+
+        </div>
+
+      )}
+
     </section>
   );
 }
