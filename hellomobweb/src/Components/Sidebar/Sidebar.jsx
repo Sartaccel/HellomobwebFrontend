@@ -28,7 +28,7 @@ const Sidebar = () => {
   };
 
   const menuItems = [
-    { name: "Dashboard", icon: <FaHome />, path: "/" },
+    { name: "Dashboard", icon: <FaHome />, path: "/dashboard" },
     { name: "Product Management", icon: <FaBoxOpen />, path: "/products" },
     { name: "Categories", icon: <FaTags />, path: "/category" },
     { name: "Order Management", icon: <FaShoppingCart />, path: "/orders" },

@@ -1,0 +1,246 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+.login-wrapper{
+  display:flex;
+  min-height:100vh;
+  width:100%;
+}
+
+/* LEFT SIDE */
+
+.login-left{
+  flex:1;
+  background:linear-gradient(135deg,#3b5ed7,#2a47b8);
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  overflow:hidden;
+  padding:20px;
+  text-align:start;
+}
+
+.content h1{
+  font-size:100px;
+}
+
+.content p{
+  font-size:25px;
+  margin-top:10px;
+}
+
+/* ANIMATION */
+
+.circle{
+  position:absolute;
+  border-radius:50%;
+  background:white;
+  opacity:0.08;
+  animation:float 10s infinite ease-in-out;
+}
+
+.c1{
+  width:220px;
+  height:220px;
+  top:10%;
+  left:10%;
+}
+
+.c2{
+  width:180px;
+  height:180px;
+  bottom:20%;
+  left:30%;
+  animation-delay:2s;
+}
+
+.c3{
+  width:260px;
+  height:260px;
+  top:30%;
+  right:-60px;
+  animation-delay:4s;
+}
+
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-25px);}
+  100%{transform:translateY(0px);}
+}
+
+/* RIGHT SIDE */
+
+.login-right{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#2a47b8;
+  padding:20px;
+}
+
+/* LOGIN CARD */
+
+.login-card{
+  width:100%;
+  max-width:460px;
+  padding:40px;
+  background:rgb(27, 97, 227);
+  border-radius:10px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.08);
+  text-align:center;
+}
+
+/* LOGO */
+
+.logo{
+  width:200px;
+  max-width:100%;
+  margin-bottom:25px;
+}
+
+/* INPUT */
+
+.input-box{
+  display:flex;
+  align-items:center;
+  border:1px solid #ddd;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:6px;
+}
+
+.icon{
+  margin-right:10px;
+  color:white;
+}
+
+.input-box input{
+  border:none;
+  outline:none;
+  width:100%;
+  background:transparent;
+  color:white;
+}
+
+/* BUTTON */
+
+.login-btn{
+  width:100%;
+  padding:12px;
+  background:#f1f1f3;
+  color:black;
+  font-weight:bold;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.login-btn:hover{
+  background:#2a47b8;
+  color:white;
+}
+
+/* INPUT STYLE */
+
+.superinput-field{
+  background-color:transparent;
+  font-size:18px;
+  color:white;
+}
+
+input::placeholder{
+  color:white;
+}
+
+/* ERROR MESSAGE */
+
+.error-msg{
+  color:rgb(201, 20, 20);
+  font-size:16px;
+  margin-top:8px;
+  text-align:center;
+}
+
+/* =========================
+   TABLET RESPONSIVE
+========================= */
+
+@media (max-width:992px){
+
+.login-wrapper{
+  flex-direction:column;
+}
+
+.login-left{
+  height:40vh;
+}
+
+.login-right{
+  height:auto;
+}
+
+.content h1{
+  font-size:40px;
+}
+
+.content p{
+  font-size:16px;
+}
+
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width:576px){
+
+.login-left{
+  height:35vh;
+  padding:15px;
+}
+
+.login-card{
+  padding:25px;
+}
+
+.content h1{
+  font-size:28px;
+}
+
+.content p{
+  font-size:14px;
+}
+
+.input-field{
+  font-size:16px;
+}
+
+.login-btn{
+  padding:10px;
+}
+
+}
+
+/* =========================
+   LARGE SCREENS
+========================= */
+
+@media (min-width:1400px){
+
+.login-card{
+  max-width:520px;
+}
+
+.content h1{
+  font-size:70px;
+}
+
+}

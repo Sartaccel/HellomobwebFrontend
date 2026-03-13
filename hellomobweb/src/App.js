@@ -2,34 +2,120 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Topbar from "./Components/Topbar/Topbar";
 import "./App.css";
+
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Products from "./Pages/Products/Products";
 import AddProduct from "./Components/Productmanagement/AddProduct/AddProduct";
 import Orders from "./Pages/Orders/Orders";
+import SuperAdmin from "./Pages/SuperAdmin/superadminlogin";
 import Category from "./Pages/Category/Category";
 import Admin from "./Pages/Admin/Admin";
+import OtpVerification from "./Components/Auth/OtpVerification/OtpVerification";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Sidebar />
+      <Routes>
 
-        <div className="main-content">
-          <Topbar />
+        {/* Login Page */}
+        <Route path="/" element={<SuperAdmin />} />
+       
 
-          <div className="page-content">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/addproduct" element={<AddProduct/>}/>
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/category" element={<Category />} />
-              <Route path="/admin" element={<Admin />} />
-            </Routes>
-          </div>
-        </div>
-      </div>
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Dashboard />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Products */}
+        <Route
+          path="/products"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Products />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Add Product */}
+        <Route
+          path="/addproduct"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <AddProduct />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Orders */}
+        <Route
+          path="/orders"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Orders />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Category */}
+        <Route
+          path="/category"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Category />
+              </div>
+            </div>
+          }
+        />
+
+        {/* Admin */}
+        <Route
+          path="/admin"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <Admin />
+              </div>
+            </div>
+          }
+        />
+
+        <Route path="/OtpVerification" element={<div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <OtpVerification/>
+
+              </div>
+            </div>
+      }/>
+
+      </Routes>
     </BrowserRouter>
   );
 }
