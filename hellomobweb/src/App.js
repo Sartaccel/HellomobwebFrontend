@@ -10,6 +10,7 @@ import Orders from "./Pages/Orders/Orders";
 import SuperAdmin from "./Pages/SuperAdmin/superadminlogin";
 import Category from "./Pages/Category/Category";
 import Admin from "./Pages/Admin/Admin";
+import OtpVerification from "./Components/Auth/OtpVerification/OtpVerification";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         {/* Login Page */}
         <Route path="/" element={<SuperAdmin />} />
+       
 
         {/* Dashboard */}
         <Route
@@ -102,6 +104,16 @@ function App() {
             </div>
           }
         />
+
+        <Route path="/OtpVerification" element={<div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <OtpVerification/>
+
+              </div>
+            </div>
+      }/>
 
       </Routes>
     </BrowserRouter>
