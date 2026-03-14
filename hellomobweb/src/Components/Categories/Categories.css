@@ -203,6 +203,8 @@ min-width:650px;
 
 thead{
 background:#e6f1e3;
+color:#2e7d32;
+
 }
 
 th,td{
@@ -219,6 +221,7 @@ border-bottom:1px solid #eee;
 display:flex;
 gap:12px;
 cursor:pointer;
+color:#999;
 }
 
 /* PAGINATION */

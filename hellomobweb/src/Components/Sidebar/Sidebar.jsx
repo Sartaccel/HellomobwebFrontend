@@ -32,7 +32,7 @@ const Sidebar = () => {
     { name: "Product Management", icon: <FaBoxOpen />, path: "/products" },
     { name: "Categories", icon: <FaTags />, path: "/category" },
     { name: "Order Management", icon: <FaShoppingCart />, path: "/orders" },
-    { name: "User Management", icon: <FaUsers />, path: "/users" },
+    { name: "User Management", icon: <FaUsers />, path: "/user" },
     { name: "Admin Management", icon: <FaUserFriends />, path: "/admin" },
 
   ];

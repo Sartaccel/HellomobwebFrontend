@@ -82,9 +82,8 @@ display:flex;
 gap:10px;
 }
 
-.cancel-btn,
-.create-btn{
-flex:1;
+.Admin-cancel-btn,
+.Admin-create-btn{
 padding:10px;
 border:none;
 border-radius:6px;
@@ -92,17 +91,17 @@ cursor:pointer;
 font-size:clamp(13px,1vw,15px);
 }
 
-.cancel-btn{
-background:#403f3f;
+.Admin-cancel-btn{
+background:#919090;
 color:white;
 }
 
-.create-btn{
+.Admin-create-btn{
 background:#56a873;
 color:white;
 }
 
-.create-btn:hover{
+.Admin-create-btn:hover{
   background: #56a873;
   opacity: 0.9;}
 

@@ -11,6 +11,8 @@ import SuperAdmin from "./Pages/SuperAdmin/superadminlogin";
 import Category from "./Pages/Category/Category";
 import Admin from "./Pages/Admin/Admin";
 import OtpVerification from "./Components/Auth/OtpVerification/OtpVerification";
+import User from "./Pages/User/User";
+import ViewUser from "./Components/UserManagement/ViewUser/ViewUser";
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <Dashboard />
+                <div className="page-content">
+          <Dashboard />
+        </div>
               </div>
             </div>
           }
@@ -43,7 +47,9 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <Products />
+                <div className="page-content">
+                  <Products />
+                </div>
               </div>
             </div>
           }
@@ -57,7 +63,9 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <AddProduct />
+                <div className="page-content">
+                  <AddProduct />
+                </div>
               </div>
             </div>
           }
@@ -71,7 +79,9 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <Orders />
+                <div className="page-content">
+                  <Orders />
+                </div>
               </div>
             </div>
           }
@@ -85,12 +95,44 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <Category />
+                <div className="page-content">
+                  <Category />
+                </div>
               </div>
             </div>
           }
         />
 
+        {/* User */}
+        <Route
+          path="/user"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <div className="page-content">
+                  <User />
+                </div>
+              </div>
+            </div>
+          }
+        />
+        {/* ViewUser */}
+        <Route
+          path="/viewuser"
+          element={
+            <div className="app-container">
+              <Sidebar />
+              <div className="main-content">
+                <Topbar />
+                <div className="page-content">
+                  <ViewUser />
+                </div>
+              </div>
+            </div>
+          }
+        />
         {/* Admin */}
         <Route
           path="/admin"
@@ -99,7 +141,9 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <Admin />
+                <div className="page-content">
+                  <Admin />
+                </div>
               </div>
             </div>
           }
@@ -109,8 +153,9 @@ function App() {
               <Sidebar />
               <div className="main-content">
                 <Topbar />
-                <OtpVerification/>
-
+                <div className="page-content">
+                  <OtpVerification/>
+                </div>
               </div>
             </div>
       }/>

@@ -161,8 +161,8 @@ function AdminManagement() {
           </div>
 
           <div className="button-row">
-            <button type="button" className="cancel-btn" onClick={handleCancel} disabled={loading}>Cancel</button>
-            <button type="submit" className="create-btn" disabled={loading}>
+            <button type="button" className="Admin-cancel-btn" onClick={handleCancel} disabled={loading}>Cancel</button>
+            <button type="submit" className="Admin-create-btn" disabled={loading}>
               {loading ? <span className="spinner" /> : null}
               {loading ? "Creating..." : "Create Admin"}
             </button>

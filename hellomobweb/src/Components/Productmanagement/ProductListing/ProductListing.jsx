@@ -174,7 +174,7 @@ function ProductListing() {
       </div>
 
       {/* SEARCH */}
-      <div className="search-bar">
+      <div className="Product-search-bar">
 
         <FaSearch className="search-icon" />
 
