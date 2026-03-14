@@ -49,7 +49,7 @@
 
 /* SEARCH BAR */
 
-.search-bar {
+.Product-search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -61,7 +61,7 @@
   width: clamp(220px, 40vw, 400px);
 }
 
-.search-bar input {
+.Product-search-bar input {
   border: none;
   background: transparent;
   color: black;
@@ -69,7 +69,9 @@
   font-size: 13px;
   width: 100%;
 }
-
+.Product-search-bar input::placeholder{
+  color: #999;
+}
 .search-icon {
   color: #a0a4a8;
 }
