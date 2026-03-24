@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ContactDetails from './Components/Navbar/pages/contactdetails_page/Contact Details';
+import PaymentScreen from './Components/Navbar/pages/paymentscreen_page/PaymentScreen';
 
 function App() {
+  const [currentScreen, setCurrentScreen] = useState('contact');
+
+  const handleContinue = () => {
+    setCurrentScreen('payment');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {currentScreen === 'contact' ? (
+        <ContactDetails onContinue={handleContinue} />
+      ) : (
+        <PaymentScreen />
+      )}
     </div>
   );
 }
